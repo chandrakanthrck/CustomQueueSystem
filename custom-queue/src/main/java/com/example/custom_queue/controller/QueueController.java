@@ -1,5 +1,7 @@
 package com.example.custom_queue.controller;
 
+import com.example.custom_queue.consumer.Consumer;
+import com.example.custom_queue.producer.Producer;
 import com.example.custom_queue.queue.CustomQueue;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,6 +10,12 @@ import org.springframework.web.bind.annotation.*;
 public class QueueController {
 
     private final CustomQueue<String> queue = new CustomQueue<>();
+    private final Producer producer;
+    private final Consumer consumer;
+    public QueueController(Producer producer, Consumer consumer) {
+        this.producer = producer;
+        this.consumer = consumer;
+    }
 
     // Endpoint to enqueue a new item
     @PostMapping("/enqueue/{item}")
@@ -47,5 +55,17 @@ public class QueueController {
     @GetMapping("/isEmpty")
     public String isEmpty() {
         return "Is the queue empty? " + queue.isEmpty();
+    }
+    // New endpoint to manually trigger producer to enqueue a message
+    @PostMapping("/produce")
+    public String produce() throws InterruptedException {
+        producer.produce();
+        return "Produced an item to the queue.";
+    }
+    // New endpoint to manually trigger consumer to dequeue a message
+    @DeleteMapping("/consume")
+    public String consume() throws InterruptedException {
+        consumer.consume();
+        return "Consumer has consumed an item from the queue.";
     }
 }
