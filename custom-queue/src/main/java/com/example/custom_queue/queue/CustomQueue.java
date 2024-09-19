@@ -2,8 +2,6 @@ package com.example.custom_queue.queue;
 
 import java.util.NoSuchElementException;
 
-import static org.apache.logging.log4j.ThreadContext.isEmpty;
-
 //front: Points to the first element of the queue
 //rear: Points to the last element of the queue
 //size: Tracks the number of elements in the queue
