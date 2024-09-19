@@ -3,69 +3,82 @@ package com.example.custom_queue.controller;
 import com.example.custom_queue.consumer.Consumer;
 import com.example.custom_queue.producer.Producer;
 import com.example.custom_queue.queue.CustomQueue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/queue")
 public class QueueController {
 
+    private static final Logger logger = LoggerFactory.getLogger(QueueController.class);
     private final CustomQueue<String> queue = new CustomQueue<>();
     private final Producer producer;
     private final Consumer consumer;
+
     public QueueController(Producer producer, Consumer consumer) {
         this.producer = producer;
         this.consumer = consumer;
     }
 
-    // Endpoint to enqueue a new item
     @PostMapping("/enqueue/{item}")
-    public String enqueue(@PathVariable String item) {
+    public ResponseEntity<String> enqueue(@PathVariable String item) {
+        if (item == null || item.trim().isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Error: Item cannot be null or empty.");
+        }
         queue.enqueue(item);
-        return item + " has been added to the queue.";
+        logger.info("Enqueued item: {}", item);
+        return ResponseEntity.ok(item + " has been added to the queue.");
     }
 
-    // Endpoint to dequeue an item
     @DeleteMapping("/dequeue")
-    public String dequeue() {
+    public ResponseEntity<String> dequeue() {
         try {
             String item = queue.dequeue();
-            return item + " has been removed from the queue.";
+            logger.info("Dequeued item: {}", item);
+            return ResponseEntity.ok(item + " has been removed from the queue.");
         } catch (Exception e) {
-            return e.getMessage();
+            logger.error("Error during dequeue: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error: " + e.getMessage());
         }
     }
 
-    // Endpoint to peek at the front item
     @GetMapping("/peek")
-    public String peek() {
+    public ResponseEntity<String> peek() {
         try {
-            return "Front of the queue: " + queue.peek();
+            return ResponseEntity.ok("Front of the queue: " + queue.peek());
         } catch (Exception e) {
-            return e.getMessage();
+            logger.error("Error during peek: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error: " + e.getMessage());
         }
     }
 
-    // Endpoint to check the size of the queue
     @GetMapping("/size")
-    public String getSize() {
-        return "Current queue size: " + queue.size();
+    public ResponseEntity<String> getSize() {
+        return ResponseEntity.ok("Current queue size: " + queue.size());
     }
 
-    // Endpoint to check if the queue is empty
     @GetMapping("/isEmpty")
-    public String isEmpty() {
-        return "Is the queue empty? " + queue.isEmpty();
+    public ResponseEntity<String> isEmpty() {
+        return ResponseEntity.ok("Is the queue empty? " + queue.isEmpty());
     }
-    // New endpoint to manually trigger producer to enqueue a message
+
     @PostMapping("/produce")
-    public String produce() throws InterruptedException {
+    public ResponseEntity<String> produce() throws InterruptedException {
         producer.produce();
-        return "Produced an item to the queue.";
+        logger.info("Produced an item to the queue.");
+        return ResponseEntity.ok("Produced an item to the queue.");
     }
-    // New endpoint to manually trigger consumer to dequeue a message
+
     @DeleteMapping("/consume")
-    public String consume() throws InterruptedException {
+    public ResponseEntity<String> consume() throws InterruptedException {
         consumer.consume();
-        return "Consumer has consumed an item from the queue.";
+        logger.info("Consumer has consumed an item from the queue.");
+        return ResponseEntity.ok("Consumer has consumed an item from the queue.");
     }
 }
