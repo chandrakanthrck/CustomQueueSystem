@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.NoSuchElementException;
+
 @RestController
 @RequestMapping("/queue")
 public class QueueController {
@@ -51,12 +53,16 @@ public class QueueController {
     public ResponseEntity<String> peek() {
         try {
             return ResponseEntity.ok("Front of the queue: " + queue.peek());
+        } catch (NoSuchElementException e) {
+            logger.error("Error during peek: Queue is empty.");
+            return ResponseEntity.ok("Queue is empty.");
         } catch (Exception e) {
             logger.error("Error during peek: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error: " + e.getMessage());
         }
     }
+
 
     @GetMapping("/size")
     public ResponseEntity<String> getSize() {
