@@ -2,22 +2,22 @@
 
 ## Overview
 
-`CustomQueueSystem` is a Spring Boot application that provides custom implementations of queue systems, including a message queue. This system includes functionality for a simple queue, message queuing, and custom producer-consumer interactions.
+`CustomQueueSystem` is a Spring Boot application that provides custom implementations of queue systems, including message queuing. This system includes functionality for a simple queue, message queuing, and custom producer-consumer interactions.
 
 ## Features
 
-- **Custom Queue**: A basic queue implementation with standard operations.
-- **Message Queue**: Extends the custom queue to handle messages with timestamps.
-- **Producer-Consumer**: Endpoints to simulate producer and consumer interactions with the queue.
+- **Custom Queue**: A basic queue implementation with standard operations like enqueue, dequeue, and peek.
+- **Message Queue**: Extends the custom queue to handle timestamped messages.
+- **Producer-Consumer**: REST endpoints to simulate producer and consumer interactions with the queue.
 
 ## Project Structure
 
-- **`src/main/java/com/example/custom_queue`**:
-  - **`controller`**: Contains REST controllers for interacting with the queue.
-  - **`consumer`**: Contains the producer classes responsible for producing items to the queue.
-  - **`producer`**: Contains the consumer classes responsible for consuming items from the queue.
-  - **`queue`**: Contains queue implementations (`CustomQueue`, `MessageQueue`).
-  - **`model`**: Contains the message model class (`Message`).
+- **`src/main/java/com/github/chandrakanthrck/custom_queue`**:
+  - **`controller`**: Handles REST API requests for queue operations.
+  - **`consumer`**: Contains the consumer classes responsible for consuming items from the queue.
+  - **`producer`**: Contains the producer classes responsible for adding items to the queue.
+  - **`queue`**: Contains queue implementations like `CustomQueue` and `MessageQueue`.
+  - **`model`**: Contains the data model classes, such as `Message`.
 
 ## Custom Queue Implementation
 
@@ -33,7 +33,7 @@
 
 ### `MessageQueue<T>`
 
-- **Description**: A message queue that extends `CustomQueue` to handle messages.
+- **Description**: A message queue that extends `CustomQueue` to handle messages with timestamps.
 - **Methods**:
   - `enqueue(T content)`: Adds a message to the queue with a timestamp.
   - `dequeue()`: Removes and returns the message at the front of the queue.
@@ -64,19 +64,19 @@
 
 1. **Clone the Repository**:
 
-   ```sh
+   ```bash
    git clone git@github.com:chandrakanthrck/CustomQueueSystem.git
    ```
 
 2. **Navigate to the Project Directory**:
 
-   ```sh
+   ```bash
    cd custom-queue
    ```
 
 3. **Build and Run the Application**:
 
-   ```sh
+   ```bash
    ./mvnw spring-boot:run
    ```
 
@@ -94,5 +94,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgements
 
-- Spring Boot for the framework.
-- Custom implementations for learning and experimentation.
+- Thanks to Spring Boot for providing a robust framework.
+- This project was developed for educational and experimental purposes.
