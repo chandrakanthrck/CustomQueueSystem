@@ -14,7 +14,7 @@
 	<version>0.0.3-SNAPSHOT</version>
 	<name>Custom Queue</name>
 	<description>
-		An advanced message queuing system designed with robust producer-consumer functionality using Spring Boot. This project introduces custom queue management, efficient scheduling mechanisms, and seamless integration with streaming technologies for enhanced performance and scalability.
+		A message queuing system with producer-consumer functionality built using Spring Boot. It features custom queue management, scheduling mechanisms, and integration with streaming technologies for better performance and scalability.
 	</description>
 
 	<properties>
