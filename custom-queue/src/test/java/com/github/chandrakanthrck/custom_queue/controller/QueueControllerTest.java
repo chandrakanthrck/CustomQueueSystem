@@ -1,6 +1,7 @@
 package com.github.chandrakanthrck.custom_queue.controller;
 
-import com.github.chandrakanthrck.custom_queue.queue.CustomQueue;
+import com.github.chandrakanthrck.custom_queue.model.Message;
+import com.github.chandrakanthrck.custom_queue.persistence.QueuePersistence;
 import com.github.chandrakanthrck.custom_queue.consumer.Consumer;
 import com.github.chandrakanthrck.custom_queue.producer.Producer;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,7 +26,7 @@ public class QueueControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private CustomQueue<String> queue;
+    private QueuePersistence queuePersistence;
 
     @MockBean
     private Producer producer;
@@ -41,7 +42,7 @@ public class QueueControllerTest {
     @Test
     public void testEnqueueAndCheckSizeDynamically() throws Exception {
         // Before enqueue, the queue size is 0
-        when(queue.size()).thenReturn(0);
+        when(queuePersistence.size()).thenReturn(0);
         mockMvc.perform(get("/queue/size")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -49,9 +50,9 @@ public class QueueControllerTest {
 
         // After enqueuing an item, mock the size to increase dynamically
         doAnswer(invocation -> {
-            when(queue.size()).thenReturn(1);  // Enqueue an item
+            when(queuePersistence.size()).thenReturn(1);  // Enqueue an item
             return null;
-        }).when(queue).enqueue(anyString());
+        }).when(queuePersistence).enqueue(any(Message.class));
 
         mockMvc.perform(post("/queue/enqueue/{item}", "testItem")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -68,15 +69,15 @@ public class QueueControllerTest {
     @Test
     public void testDequeueAndCheckEmptyStateDynamically() throws Exception {
         // Initially, the queue has 1 item
-        when(queue.size()).thenReturn(1);
-        when(queue.isEmpty()).thenReturn(false);
+        when(queuePersistence.size()).thenReturn(1);
+        when(queuePersistence.isEmpty()).thenReturn(false);
 
         // Mock dequeue behavior to remove the last item and make the queue empty
         doAnswer(invocation -> {
-            when(queue.size()).thenReturn(0);  // After dequeue, the queue size is 0
-            when(queue.isEmpty()).thenReturn(true);  // Queue becomes empty
-            return "testItem";
-        }).when(queue).dequeue();
+            when(queuePersistence.size()).thenReturn(0);  // After dequeue, the queue size is 0
+            when(queuePersistence.isEmpty()).thenReturn(true);  // Queue becomes empty
+            return new Message("testItem");
+        }).when(queuePersistence).dequeue();
 
         // Perform dequeue operation
         mockMvc.perform(delete("/queue/dequeue")
@@ -93,12 +94,11 @@ public class QueueControllerTest {
 
     @Test
     public void testPeekQueueDynamically() throws Exception {
-        when(queue.peek()).thenThrow(new NoSuchElementException("Queue is empty"));
+        when(queuePersistence.peek()).thenThrow(new NoSuchElementException("Queue is empty"));
 
         mockMvc.perform(get("/queue/peek")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())  // Expect 200 status
+                .andExpect(status().isOk())  // Expect 200 status instead of 404
                 .andExpect(content().string("Queue is empty."));  // Expect "Queue is empty." message
     }
-
 }
