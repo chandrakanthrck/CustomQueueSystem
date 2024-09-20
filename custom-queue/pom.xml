@@ -11,7 +11,7 @@
 
 	<groupId>com.example</groupId>
 	<artifactId>custom-queue</artifactId>
-	<version>0.0.1</version> <!-- This will be updated automatically during the release process -->
+	<version>0.0.2-SNAPSHOT</version> <!-- This will be updated automatically during the release process -->
 	<name>custom-queue</name>
 	<description>A custom implementation of message queuing with producer-consumer functionality using Spring Boot, featuring custom queues, scheduling, and streaming mechanisms.</description>
 
