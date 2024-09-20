@@ -1,4 +1,4 @@
-package com.example.custom_queue.queue;
+package com.github.chandrakanthrck.custom_queue.queue;
 
 public interface Queue<T> {
     void enqueue(T data);

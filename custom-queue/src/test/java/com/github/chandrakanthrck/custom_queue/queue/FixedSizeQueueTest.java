@@ -1,6 +1,5 @@
-package com.example.custom_queue.queue;
+package com.github.chandrakanthrck.custom_queue.queue;
 
-import com.example.custom_queue.queue.FixedSizeQueue;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

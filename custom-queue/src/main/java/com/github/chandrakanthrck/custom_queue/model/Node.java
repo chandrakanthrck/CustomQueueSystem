@@ -1,4 +1,4 @@
-package com.example.custom_queue.model;
+package com.github.chandrakanthrck.custom_queue.model;
 
 public class Node<T> {
     private T data;

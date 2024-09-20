@@ -1,4 +1,4 @@
-package com.example.custom_queue.model;
+package com.github.chandrakanthrck.custom_queue.model;
 
 import java.io.Serializable;
 import java.util.UUID;

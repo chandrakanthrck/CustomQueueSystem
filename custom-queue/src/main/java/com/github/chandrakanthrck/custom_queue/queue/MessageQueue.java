@@ -1,7 +1,6 @@
-package com.example.custom_queue.queue;
+package com.github.chandrakanthrck.custom_queue.queue;
 
-import com.example.custom_queue.model.Message;
-import java.util.NoSuchElementException;
+import com.github.chandrakanthrck.custom_queue.model.Message;
 
 public class MessageQueue<T> {
     private final CustomQueue<Message<T>> queue = new CustomQueue<>();

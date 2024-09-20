@@ -1,7 +1,6 @@
-package com.example.custom_queue.queue;
+package com.github.chandrakanthrck.custom_queue.queue;
 
-import com.example.custom_queue.model.Message;
-import com.example.custom_queue.queue.MessageQueue;
+import com.github.chandrakanthrck.custom_queue.model.Message;
 import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;

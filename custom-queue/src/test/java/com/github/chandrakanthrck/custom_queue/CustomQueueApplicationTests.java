@@ -1,4 +1,4 @@
-package com.example.custom_queue;
+package com.github.chandrakanthrck.custom_queue;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

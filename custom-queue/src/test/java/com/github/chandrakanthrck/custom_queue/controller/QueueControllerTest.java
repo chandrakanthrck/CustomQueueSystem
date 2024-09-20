@@ -1,8 +1,8 @@
-package com.example.custom_queue.controller;
+package com.github.chandrakanthrck.custom_queue.controller;
 
-import com.example.custom_queue.queue.CustomQueue;
-import com.example.custom_queue.consumer.Consumer;
-import com.example.custom_queue.producer.Producer;
+import com.github.chandrakanthrck.custom_queue.queue.CustomQueue;
+import com.github.chandrakanthrck.custom_queue.consumer.Consumer;
+import com.github.chandrakanthrck.custom_queue.producer.Producer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;

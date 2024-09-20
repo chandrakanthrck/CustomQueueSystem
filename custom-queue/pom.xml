@@ -9,11 +9,13 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.example</groupId>
+	<groupId>com.github.chandrakanthrck</groupId>
 	<artifactId>custom-queue</artifactId>
-	<version>0.0.2-SNAPSHOT</version> <!-- This will be updated automatically during the release process -->
-	<name>custom-queue</name>
-	<description>A custom implementation of message queuing with producer-consumer functionality using Spring Boot, featuring custom queues, scheduling, and streaming mechanisms.</description>
+	<version>0.0.2-SNAPSHOT</version>
+	<name>Custom Queue</name>
+	<description>
+		An advanced message queuing system designed with robust producer-consumer functionality using Spring Boot. This project introduces custom queue management, efficient scheduling mechanisms, and seamless integration with streaming technologies for enhanced performance and scalability.
+	</description>
 
 	<properties>
 		<java.version>17</java.version>

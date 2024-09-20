@@ -1,6 +1,6 @@
-package com.example.custom_queue.consumer;
+package com.github.chandrakanthrck.custom_queue.consumer;
 
-import com.example.custom_queue.queue.CustomQueue;
+import com.github.chandrakanthrck.custom_queue.queue.CustomQueue;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 

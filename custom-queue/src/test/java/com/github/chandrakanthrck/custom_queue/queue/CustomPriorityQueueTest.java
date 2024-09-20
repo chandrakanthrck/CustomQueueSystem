@@ -1,35 +1,32 @@
-package com.example.custom_queue.queue;
+package com.github.chandrakanthrck.custom_queue.queue;
 
-import com.example.custom_queue.queue.CustomQueue;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.NoSuchElementException;
-
-public class CustomQueueTest {
+public class CustomPriorityQueueTest {
 
     @Test
     public void testEnqueueDequeue() {
-        CustomQueue<String> queue = new CustomQueue<>();
-        queue.enqueue("first");
+        CustomPriorityQueue<String> queue = new CustomPriorityQueue<>();
         queue.enqueue("second");
-        assertEquals("first", queue.dequeue());
+        queue.enqueue("first");
+        assertEquals("first", queue.dequeue()); // PriorityQueue should order based on natural ordering
         assertEquals("second", queue.dequeue());
         assertTrue(queue.isEmpty());
     }
 
     @Test
     public void testPeek() {
-        CustomQueue<String> queue = new CustomQueue<>();
+        CustomPriorityQueue<String> queue = new CustomPriorityQueue<>();
         queue.enqueue("peeked");
         assertEquals("peeked", queue.peek());
         queue.dequeue();
-        assertThrows(NoSuchElementException.class, queue::peek);
+        assertNull(queue.peek());
     }
 
     @Test
     public void testSize() {
-        CustomQueue<String> queue = new CustomQueue<>();
+        CustomPriorityQueue<String> queue = new CustomPriorityQueue<>();
         queue.enqueue("first");
         queue.enqueue("second");
         assertEquals(2, queue.size());
@@ -39,7 +36,7 @@ public class CustomQueueTest {
 
     @Test
     public void testIsEmpty() {
-        CustomQueue<String> queue = new CustomQueue<>();
+        CustomPriorityQueue<String> queue = new CustomPriorityQueue<>();
         assertTrue(queue.isEmpty());
         queue.enqueue("item");
         assertFalse(queue.isEmpty());

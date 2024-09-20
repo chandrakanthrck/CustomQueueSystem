@@ -1,6 +1,6 @@
-package com.example.custom_queue.queue;
+package com.github.chandrakanthrck.custom_queue.queue;
 
-import com.example.custom_queue.model.Node;  // Import the Node class
+import com.github.chandrakanthrck.custom_queue.model.Node;  // Import the Node class
 
 import java.util.NoSuchElementException;
 

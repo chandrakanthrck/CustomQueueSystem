@@ -1,4 +1,4 @@
-package com.example.custom_queue.queue;
+package com.github.chandrakanthrck.custom_queue.queue;
 
 import java.util.PriorityQueue;
 

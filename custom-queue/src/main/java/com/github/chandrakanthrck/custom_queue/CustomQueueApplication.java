@@ -1,4 +1,4 @@
-package com.example.custom_queue;
+package com.github.chandrakanthrck.custom_queue;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

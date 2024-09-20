@@ -1,6 +1,6 @@
-package com.example.custom_queue.config;
+package com.github.chandrakanthrck.custom_queue.config;
 
-import com.example.custom_queue.queue.CustomQueue;
+import com.github.chandrakanthrck.custom_queue.queue.CustomQueue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
