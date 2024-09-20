@@ -11,7 +11,7 @@
 
 	<groupId>com.github.chandrakanthrck</groupId>
 	<artifactId>custom-queue</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.3</version>
 	<name>Custom Queue</name>
 	<description>
 		A message queuing system with producer-consumer functionality built using Spring Boot. It features custom queue management, scheduling mechanisms, and integration with streaming technologies for better performance and scalability.
@@ -50,7 +50,7 @@
 		<connection>scm:git:https://github.com/chandrakanthrck/CustomQueueSystem.git</connection>
 		<developerConnection>scm:git:https://github.com/chandrakanthrck/CustomQueueSystem.git</developerConnection>
 		<url>https://github.com/chandrakanthrck/CustomQueueSystem</url>
-		<tag>custom-queue-0.0.2-SNAPSHOT</tag>
+		<tag>custom-queue-0.0.3-SNAPSHOT</tag>
 	</scm>
 
 	<build>
